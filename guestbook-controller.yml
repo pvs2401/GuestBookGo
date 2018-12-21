@@ -1,0 +1,33 @@
+---
+  kind: "ReplicationController"
+  apiVersion: "v1"
+  metadata: 
+    name: "guestbook"
+    labels: 
+      app: "guestbook"
+      tier: "web"
+      site: "azure"
+  spec: 
+    replicas: 3
+    selector: 
+      app: "guestbook"
+      tier: "web"
+      site: "azure"
+    template: 
+      metadata: 
+        labels: 
+          app: "guestbook"
+          tier: "web"
+          site: "azure"
+      spec: 
+        nodeSelector:
+          site: azure
+        containers: 
+          - 
+            name: "guestbook"
+            image: "k8s.gcr.io/guestbook:v3"
+            ports: 
+              - 
+                name: "http-server"
+                containerPort: 3000
+

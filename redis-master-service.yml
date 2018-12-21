@@ -1,0 +1,19 @@
+---
+  kind: "Service"
+  apiVersion: "v1"
+  metadata: 
+    name: "redis-master"
+    labels: 
+      app: "guestbook"
+      tier: "db"
+      role: "master"
+  spec: 
+    ports: 
+      - 
+        port: 6379
+        targetPort: "redis-server"
+    selector: 
+      app: "guestbook"
+      tier: "db"
+      role: "master"
+

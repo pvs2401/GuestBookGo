@@ -1,0 +1,36 @@
+---
+  kind: "ReplicationController"
+  apiVersion: "v1"
+  metadata: 
+    name: "redis-slave"
+    labels: 
+      app: "guestbook"
+      tier: "cache"
+      role: "slave"
+      site: "onprem"
+  spec: 
+    replicas: 2
+    selector: 
+      app: "guestbook"
+      tier: "cache"
+      role: "slave"
+      site: "onprem"
+    template: 
+      metadata: 
+        labels: 
+          app: "guestbook"
+          tier: "cache"
+          role: "slave"
+          site: "onprem"
+      spec: 
+        nodeSelector:
+          site: onprem
+        containers: 
+          - 
+            name: "redis-slave"
+            image: "kubernetes/redis-slave:v2"
+            ports: 
+              - 
+                name: "redis-server"
+                containerPort: 6379
+

@@ -1,0 +1,18 @@
+---
+  kind: "Service"
+  apiVersion: "v1"
+  metadata: 
+    name: "guestbook"
+    labels: 
+      app: "guestbook"
+      tier: "web"
+  spec: 
+    ports: 
+      - 
+        port: 3000
+        targetPort: "http-server"
+    selector: 
+      app: "guestbook"
+      tier: "web"
+    type: "NodePort"
+
